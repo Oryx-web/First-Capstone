@@ -1,0 +1,16 @@
+<%- include("partials/header.ejs"); %>
+
+<form action="/newpost/<%= postToEdit.title %>" method="POST">
+  <!-- Campo oculto para enviar el título original -->
+  <input type="hidden" name="oldTitle" value="<%= postToEdit.title %>">
+
+  <label for="newTitle">New Title:</label>
+  <input type="text" id="newTitle" name="newTitle" value="<%= postToEdit.title %>" required>
+
+  <label for="newContent">New Content:</label>
+  <input type="text" id="newContent" name="newContent" value="<%= postToEdit.content %>" required>
+
+  <input type="submit" value="Submit">
+</form>
+
+<%- include("partials/footer.ejs"); %>

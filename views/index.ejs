@@ -1,0 +1,30 @@
+<%- include("partials/header.ejs"); %>
+
+    <% if (locals.posts) { %>
+      <h1> Number of posts = <%- locals.postLength%> </h1>
+    <% }else { %>
+      <h1> Hi! Make the first post! </h1>
+    <% } %>
+
+    <form action="/create" method="POST">
+      <input type="submit" value="Generate Post">
+    </form>
+    <% if (locals.posts) { %>
+    <ul>
+        <% locals.posts.forEach(post => { %>
+          <li>
+            <form action="/<%= post.title %>" method="POST">
+              <input type="submit" class="page-link" value="<%= post.title %>">
+            </form>
+            <form action="/<%= post.title %>/delete" method="GET">
+              <input type="submit" class="page-link" id="deleted" name="deleted" value="Delete">
+            </form>
+            <form action="/editpost/<%= post.title %>" method="GET">
+              <input type="submit" class="page-link" value="Edit">
+            </form>
+          </li>
+        <% }); %>
+    </ul>
+    <% } %>
+
+<%- include("partials/footer.ejs"); %>
